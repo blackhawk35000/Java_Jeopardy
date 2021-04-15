@@ -1,13 +1,15 @@
 
 public class Clue {
 	private String Clue;
+	private String Category;
 	private int Value;
 	private String Question; // Might remain this to answer if that would be easier to work with
 	private boolean IsUsed;
 	
 	// Clue 
-	public Clue(String Clue, int Value, String Question) {
+	public Clue(String Clue, String Category, int Value, String Question) {
 		this.Clue = Clue;
+		this.Category = Category;
 		this.Value = Value;
 		this.Question = Question;
 		this.IsUsed = false; // This value will start false and be changed when the Clue is used
@@ -17,6 +19,10 @@ public class Clue {
 	// we probably will not be needing these since a clue object shouldn't be really changing
 	public void setClue(String clue) {
 		this.Clue = clue;
+	}
+	
+	public void setCategory(String Category) {
+		this.Category = Category;
 	}
 	
 	public void setValue(int value) {
@@ -34,6 +40,10 @@ public class Clue {
 	// Getters
 	public String getClue() {
 		return this.Clue;
+	}
+	
+	public String getCategory() {
+		return this.Category;
 	}
 	
 	public int getValue() {
