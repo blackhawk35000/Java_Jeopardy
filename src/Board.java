@@ -50,14 +50,14 @@ public class Board {
             while(i!=6){
                 if(pos==0){
                     System.out.print("|");
-                    System.out.printf("%10b",categoryList.get(i));
+                    System.out.printf("%10s",categoryList.get(i));
                     System.out.print("          ");
                     if(i==5) {
                         System.out.print("|");
                     }
                 }else{
                     System.out.print("|");
-                    System.out.printf("%10b",clueList.get(i));//add clueList.get(i).getValue() once clue class added
+                    System.out.printf("%10s",clueList.get(i));//add clueList.get(i).getValue() once clue class added
                     System.out.print("          ");
                     if(i==5) {
                         System.out.print("|");
