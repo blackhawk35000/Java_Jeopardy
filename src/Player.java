@@ -1,4 +1,3 @@
-
 public class Player {
 	private String Name;
 	private int BankBalance;
@@ -25,8 +24,12 @@ public class Player {
 		this.BankBalance = balance;
 	}
 	
-	public void setActiveStatus(boolean active) {
-		this.IsActive = active;
+	public void setActiveStatus() {
+		this.IsActive = true;
+	}
+	
+	public void setInactiveStatus() {
+		this.IsActive=false;
 	}
 	
 	// Getters
