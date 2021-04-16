@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
+
+
 public class Game {
     public static void startGame() {
         Board b = new Board();
@@ -21,16 +24,39 @@ public class Game {
 
         b.testArrays();
         b.createBoard();
+        playerTurn(playerNames, b);
+        
+        // while board is still full
+            // each player chooses a category and turn
+    }
+    
+    public static void playerTurn(ArrayList<Player> playerNames, Board b) {
+        Scanner myScanner = new Scanner(System.in);
+        Random rand = new Random();
+        int n = rand.nextInt(3);
+
+        while (b.isEmpty() == false) {
+            playerNames.get(n).setActiveStatus();
+            System.out.println(playerNames.get(n).getName()+"'s Turn:");
+            System.out.println("Enter a category to answer: ");
+            String cat = myScanner.nextLine();
+            System.out.println("Enter the clues value: ");
+            int val = myScanner.nextInt();
+            cat = cat.toUpperCase();
+            cat = cat.trim();
+            b.displayClue(cat,val);
+            myScanner.nextLine();
+            b.createBoard();
+        }
     }
 
-
-    public static void startScreen () {
+    public static void startScreen() {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Welcome to Jeopardy!");
         System.out.println("Rules [1]");
         System.out.println("Start Game [2]");
         System.out.println("Quit [3]");
-            System.out.println(" ");
+        System.out.println(" ");
         System.out.println(" Press [1] , [2] , or [3]");
         int x = myScanner.nextInt();
         switch(x) {
@@ -43,6 +69,7 @@ public class Game {
 
         }
     }
+
     public static void displayRules(){
         System.out.println("__________________________________Jeopardy Rules___________________________________");
         System.out.println(" Type the name of category you want to answer");
@@ -55,8 +82,7 @@ public class Game {
         System.out.println(" The player with the most points wins the game.");
     }
 
-        public static void main(String[] args) {
-            startScreen();
-
+    public static void main(String[] args) {
+        startScreen();
     }
 }
