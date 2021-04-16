@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Board {
     String category;
     Scanner myScanner = new Scanner(System.in);
-    ArrayList<String> clueList = new ArrayList<>();
+    ArrayList<Clue> clueList = new ArrayList<>();
     ArrayList<String> categoryList = new ArrayList<>();
     //File Data = new File (// add csv file path here //);
 
@@ -56,9 +56,15 @@ public class Board {
                         System.out.print("|");
                     }
                 }else{
-                    System.out.print("|");
-                    System.out.printf("%10s",clueList.get(i));//add clueList.get(i).getValue() once clue class added
-                    System.out.print("          ");
+                	if(clueList.get(i).getStatus()==false) {
+                		System.out.print("|");
+                		System.out.printf("%10s",clueList.get(i).getValue());
+                		System.out.print("          ");
+                	}else {
+                		System.out.print("|");
+                		System.out.printf("%10s","X");
+                		System.out.print("          ");
+                	}
                     if(i==5) {
                         System.out.print("|");
                     }
@@ -71,31 +77,62 @@ public class Board {
             pos++;
         }
     }
-    public void displayClue(ArrayList clueList ){
-     //   if (Data.isFile()){
-            try{
-
-
-
-
-            }catch(Exception ex){
-                System.out.println("Error");
+    public boolean displayClue(String Category, int Val){
+        //   if (Data.isFile()){
+        int i=0;
+        while(i!=clueList.size()) {
+            if (clueList.get(i).getValue() == Val) {
+            	
+                if (clueList.get(i).getCategory().contains(Category) && clueList.get(i).getStatus() == false) {
+                    System.out.println(clueList.get(i).getClue());
+                    clueList.get(i).removeFromPlay();
+                    return true;
+                }else if(clueList.get(i).getCategory() == Category && clueList.get(i).getStatus() == true) {
+                    System.out.println("This Clue has already been used! You are sneaky!");
+                    return false;
+                }else {
+                    i++;
+                    continue;
+                }
             }
         }
-  //  }
+        return false;
+    }
+    //  }
     public void removeClue(){
-
+    	
     }
 
     public void testArrays(){
 
         for(int i =0; i!=6; i++){
-            categoryList.add("test");
+            categoryList.add("ME");
         }
         for(int i=0; i!=30; i++){
-            clueList.add( "200");
+            Clue clue = new Clue("Name of me","ME",200,"Who is Waldo.");
+            clueList.add(clue);
         }
 
+    }
+
+    public boolean isEmpty(){
+        int i=0;
+        int numbActive_clues=0;
+        while(i!=clueList.size()){
+            if (numbActive_clues>0){
+                return false;// should break if not problem
+            }else{
+                if(clueList.get(i).getStatus()==false) {
+                    numbActive_clues++;
+                }
+            }
+            i++;
+        }
+        if(numbActive_clues==0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
