@@ -1,22 +1,30 @@
 
 public class Clue {
 	private String Clue;
+	private String Category;
 	private int Value;
 	private String Question; // Might remain this to answer if that would be easier to work with
 	private boolean IsUsed;
+	private boolean isDailyDouble;
 	
 	// Clue 
-	public Clue(String Clue, int Value, String Question) {
+	public Clue(String Clue, String Category, int Value, String Question) {
 		this.Clue = Clue;
+		this.Category = Category;
 		this.Value = Value;
 		this.Question = Question;
 		this.IsUsed = false; // This value will start false and be changed when the Clue is used
+		this.isDailyDouble = false;
 	}
 	
 	// setters only making these just in case there is a need to append one of these values 
 	// we probably will not be needing these since a clue object shouldn't be really changing
 	public void setClue(String clue) {
 		this.Clue = clue;
+	}
+	
+	public void setCategory(String Category) {
+		this.Category = Category;
 	}
 	
 	public void setValue(int value) {
@@ -31,9 +39,17 @@ public class Clue {
 		this.IsUsed = used;
 	}
 	
+	public void makeDailyDouble() {
+		this.isDailyDouble = true;
+	}
+	
 	// Getters
 	public String getClue() {
 		return this.Clue;
+	}
+	
+	public String getCategory() {
+		return this.Category;
 	}
 	
 	public int getValue() {
@@ -46,6 +62,10 @@ public class Clue {
 	
 	public boolean getStatus() {
 		return this.IsUsed;
+	}
+	
+	public boolean dailyDoubleStatus() {
+		return this.isDailyDouble;
 	}
 	
 	// Functions

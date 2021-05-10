@@ -3,6 +3,7 @@ public class Player {
 	private String Name;
 	private int BankBalance;
 	private boolean IsActive; //Is active will be used to determine which player is selecting next clue 
+	private int finalJeopardy;
 	
 	
 	// Constructor(Requires Name)
@@ -25,8 +26,16 @@ public class Player {
 		this.BankBalance = balance;
 	}
 	
-	public void setActiveStatus(boolean active) {
-		this.IsActive = active;
+	public void setActiveStatus() {
+		this.IsActive = true;
+	}
+	
+	public void setInactiveStatus() {
+		this.IsActive=false;
+	}
+	
+	public void setFinalJeopardy(int wager) {
+		this.finalJeopardy = wager;
 	}
 	
 	// Getters
@@ -42,15 +51,22 @@ public class Player {
 		return this.IsActive;
 	}
 	
+	public int finalWager() {
+		return this.finalJeopardy;
+	}
+	
 	// functions for player
 	
 	// This will be used to add clue values to players BankBalance
-	public void AddToBank(int value) {
-		this.BankBalance = this.BankBalance + value;
-		// We will have to talk about this part but I was thinking this could also
-		// set player to active.
-		if(this.IsActive = false) {
-			this.IsActive = true;
-		}
-	}
+	public void addToBank(int value) {
+        this.BankBalance = this.BankBalance + value;
+        // We will have to talk about this part but I was thinking this could also
+        // set player to active.
+        if(value>0 && this.IsActive == false) {
+            this.IsActive = true;
+        }
+        if(value<0 && this.IsActive==true){
+            this.IsActive = false;
+        }
+    }
 }
